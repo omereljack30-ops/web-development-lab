@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Question 2 - Display JSON Data</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+  <h2>Book Details</h2>
+  <div id="output"></div>
+
+  <script>
+    $.getJSON("books.json", function(data) {
+      // The title of the first book
+      console.log("Title of first book: " + data.books[0].title);
+
+      // The author of the second book
+      console.log("Author of second book: " + data.books[1].author);
+
+      // The genres of all books
+      for (let i = 0; i < data.books.length; i++) {
+        console.log("Genres of " + data.books[i].title + ": " + data.books[i].genres.join(", "));
+      }
+
+      // Also display on page
+      let html = "";
+      html += "<p><strong>Title of first book:</strong> " + data.books[0].title + "</p>";
+      html += "<p><strong>Author of second book:</strong> " + data.books[1].author + "</p>";
+      for (let i = 0; i < data.books.length; i++) {
+        html += "<p><strong>Genres of " + data.books[i].title + ":</strong> " + data.books[i].genres.join(", ") + "</p>";
+      }
+      $("#output").html(html);
+    });
+  </script>
+</body>
+</html>
